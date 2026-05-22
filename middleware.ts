@@ -1,7 +1,12 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export default clerkMiddleware();
+export function middleware(request: NextRequest) {
+  // Your existing authentication / redirection logic goes here
+  return NextResponse.next()
+}
 
+// UPDATE THIS CONFIG BLOCK:
 export const config = {
   matcher: [
     /*
@@ -13,5 +18,4 @@ export const config = {
      */
     '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
-};
-
+}
