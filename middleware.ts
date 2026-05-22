@@ -16,14 +16,11 @@ export function middleware(request: NextRequest) {
 
 // Fixed and optimized matcher config for Vercel
 export const config = {
+  // Only apply the middleware to these specific routes
+  // This completely bypasses the problematic Vercel edge regex engine
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/dashboard/:path*',
+    '/profile/:path*',
+    '/admin/:path*'
   ],
 }
